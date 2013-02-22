@@ -14,7 +14,7 @@ $_SESSION['oauth_token_secret'] = $token['oauth_token_secret'];
 
 if($twitter->getLastHttpCode() == 200)
 {
-    $twitter->authorize($token['oauth_token']);
+    $twitter->authorize($token['oauth_token'], true);
 }
 else
 {
