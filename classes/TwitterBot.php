@@ -204,9 +204,9 @@ class TwitterBot extends Twitter
         $this->friendFollowers(TwitterBot::SEARCH_BY_SCREEN_NAME, $screenName);
     }
 
-    public function friendFollowers($searchBy = null, $query)
+    public function friendFollowers($searchBy = null, $query = null)
     {
-        if($searchBy === null)
+        if(empty($searchBy))
         {
             $params = array('user_id' => $this->getUserId(), 'stringify_ids' => true);
         }
@@ -214,7 +214,7 @@ class TwitterBot extends Twitter
         {
             if(empty($query))
             {
-                $query = $this->userId;
+                $query = $this->getUserId();
             }
             $params = array('user_id' => $query, 'stringify_ids' => true);
         }
@@ -254,7 +254,7 @@ class TwitterBot extends Twitter
         {
             if(!in_array($followerIds[$i], $friendIds))
             {
-                $this->followUserById($followerIds[$i]);
+                $this->friendUserById($followerIds[$i]);
             }
         }
     }
